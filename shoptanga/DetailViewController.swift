@@ -11,6 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var webView: UIWebView!
+    
 
 
     var detailItem: AnyObject? {
@@ -24,7 +26,8 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+                let description = (detailItem as NSDictionary)["description"] as NSString
+                webView.loadHTMLString(description, baseURL: nil)
             }
         }
     }
