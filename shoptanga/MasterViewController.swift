@@ -44,7 +44,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let object = tableData[indexPath.row] as Product
-            (segue.destinationViewController as DetailViewController).detailItem = object
+                (segue.destinationViewController as DetailViewController).detailItem = object
             }
         }
     }

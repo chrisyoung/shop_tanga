@@ -15,7 +15,7 @@
 		5D42874419FD942500862F5A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D42874219FD942500862F5A /* LaunchScreen.xib */; };
 		5D42875019FD942500862F5A /* shoptangaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42874F19FD942500862F5A /* shoptangaTests.swift */; };
 		5D42878C19FDA0F400862F5A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42878B19FDA0F400862F5A /* SwiftyJSON.swift */; };
-		5D42879119FDA9B000862F5A /* product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42879019FDA9B000862F5A /* product.swift */; };
+		5D42879119FDA9B000862F5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42879019FDA9B000862F5A /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		5D42874E19FD942500862F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D42874F19FD942500862F5A /* shoptangaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoptangaTests.swift; sourceTree = "<group>"; };
 		5D42878B19FDA0F400862F5A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		5D42879019FDA9B000862F5A /* product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = product.swift; sourceTree = "<group>"; };
+		5D42879019FDA9B000862F5A /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 		5D42879219FDA9E100862F5A /* models */ = {
 			isa = PBXGroup;
 			children = (
-				5D42879019FDA9B000862F5A /* product.swift */,
+				5D42879019FDA9B000862F5A /* Product.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 				5D42873C19FD942500862F5A /* DetailViewController.swift in Sources */,
 				5D42873A19FD942500862F5A /* MasterViewController.swift in Sources */,
 				5D42873819FD942500862F5A /* AppDelegate.swift in Sources */,
-				5D42879119FDA9B000862F5A /* product.swift in Sources */,
+				5D42879119FDA9B000862F5A /* Product.swift in Sources */,
 				5D42878C19FDA0F400862F5A /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
