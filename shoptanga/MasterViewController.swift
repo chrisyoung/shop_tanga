@@ -67,10 +67,8 @@ class MasterViewController: UITableViewController {
     }
     
     func imageFromRow(rowData: NSDictionary) -> NSData{
-        let images = rowData["images"] as NSArray
-        let image = images[0] as NSDictionary
-        let urlString = image["url"] as NSString
-        let imgURL: NSURL = NSURL(string: urlString)!
+        let image = (rowData["images"] as NSArray)[0] as NSDictionary
+        let imgURL: NSURL = NSURL(string: image["url"] as NSString)!
         return NSData(contentsOfURL: imgURL)!
     }
 }
