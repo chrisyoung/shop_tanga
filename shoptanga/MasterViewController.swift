@@ -9,9 +9,8 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
-    var objects = NSMutableArray()
-
+    @IBOutlet var appsTableView : UITableView?
+    var tableData = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,25 +23,42 @@ class MasterViewController: UITableViewController {
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+        getIndex()
     }
 
+    func getIndex() {
+        let url: NSURL = NSURL(string: "http://www.tanga.com/deals/front-page.json")!
+        
+        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+            if(error != nil) { println(error.localizedDescription) }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableData = self.parse(data)
+                self.appsTableView!.reloadData()
+            })
+            
+        }).resume()
+    }
+    
+    func parse(data: NSData) -> NSArray {
+        return JSON(data: data).object as NSArray
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func insertNewObject(sender: AnyObject) {
-        objects.insertObject(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
 
     // MARK: - Segues
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as NSDate
+                let object = tableData[indexPath.row] as NSDictionary
             (segue.destinationViewController as DetailViewController).detailItem = object
             }
         }
@@ -50,36 +66,26 @@ class MasterViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return tableData.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
-        let object = objects[indexPath.row] as NSDate
-        cell.textLabel.text = object.description
+        let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        
+        cell.textLabel.text = rowData["name"] as? String
+        cell.imageView.image = UIImage(data: imageFromRow(rowData))
+        
         return cell
     }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func imageFromRow(rowData: NSDictionary) -> NSData{
+        let images = rowData["images"] as NSArray
+        let image = images[0] as NSDictionary
+        let urlString = image["url"] as NSString
+        let imgURL: NSURL = NSURL(string: urlString)!
+        return NSData(contentsOfURL: imgURL)!
     }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeObjectAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-
-
 }
 
