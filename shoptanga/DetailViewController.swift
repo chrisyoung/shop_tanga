@@ -12,9 +12,9 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var productImage: UIImageView!
     
-
-
+    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
             if let label = self.detailDescriptionLabel {
-                let description = (detailItem as NSDictionary)["description"] as NSString
+                let description = (detailItem as Product).description
                 webView.loadHTMLString(description, baseURL: nil)
             }
         }

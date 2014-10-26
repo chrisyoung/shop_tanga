@@ -26,16 +26,13 @@ class MasterViewController: UITableViewController {
             if(error != nil) { println(error.localizedDescription) }
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.tableData = self.parse(data)
+                self.tableData = Product.buildFromJSON(data)
                 self.appsTableView!.reloadData()
             })
             
         }).resume()
     }
     
-    func parse(data: NSData) -> NSArray {
-        return JSON(data: data).object as NSArray
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,7 +43,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = tableData[indexPath.row] as NSDictionary
+                let object = tableData[indexPath.row] as Product
             (segue.destinationViewController as DetailViewController).detailItem = object
             }
         }
@@ -58,10 +55,11 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        let product: Product = self.tableData[indexPath.row] as Product
         
-        cell.textLabel.text = rowData["name"] as? String
-        cell.imageView.image = UIImage(data: imageFromRow(rowData))
+        cell.textLabel.text = product.name
+        cell.imageView.image = UIImage(data: product.images[0] as NSData)
+        
         
         return cell
     }

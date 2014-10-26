@@ -56,7 +56,7 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Shop Tanga" id="tQt-TN-PWz"/>
                     <connections>
                         <outlet property="appsTableView" destination="mLL-gJ-YKr" id="zrQ-LP-Fbo"/>
                     </connections>
@@ -84,8 +84,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nea-wA-Bgj">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="da5-PW-iMr">
+                                <rect key="frame" x="16" y="72" width="240" height="128"/>
+                            </imageView>
+                            <webView contentMode="scaleAspectFit" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nea-wA-Bgj">
+                                <rect key="frame" x="16" y="221" width="367" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="Ah7-4n-0Wa" id="dDX-05-ZRQ"/>
@@ -102,6 +105,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="Lei-5M-9Gs" id="sCT-F7-F6f"/>
+                        <outlet property="productImage" destination="da5-PW-iMr" id="7dc-Sr-0jb"/>
                         <outlet property="webView" destination="nea-wA-Bgj" id="bxe-G2-XaS"/>
                     </connections>
                 </viewController>
