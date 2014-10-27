@@ -18,9 +18,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productImage: UIImageView!
     
-    
-    
-    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.

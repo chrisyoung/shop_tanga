@@ -11,7 +11,7 @@ import Foundation
 class Product {
     var name: NSString = ""
     var description: NSString = ""
-    var images: NSArray = [NSData]()
+    var images = [NSData]()
     var image: NSData = NSData()
     var subtitle: NSString = ""
     var normalPrice: Double = Double()
@@ -24,7 +24,7 @@ class Product {
         self.name = json["name"] as NSString
         self.description = json["description"] as NSString
         self.subtitle = json["subtitle"] as NSString
-        self.images = getImages(json["images"] as NSArray)
+        setImages(json["images"] as NSArray)
         setPrices(json["prices"] as NSDictionary)
     }
     
@@ -35,15 +35,13 @@ class Product {
         self.msrp = prices["msrp"] as Double
     }
     
-    func getImages(images: NSArray) -> NSArray{
-        var result = [NSData]()
+    func setImages(images: NSArray) {
         for var index = 0; index < images.count; ++index {
             var image = images[index] as NSDictionary
             var imgURL: NSURL = NSURL(string: image["url"] as NSString)!
-            result.append(NSData(contentsOfURL: imgURL)!)
+            self.images.append(NSData(contentsOfURL: imgURL)!)
         }
-        self.image = result[0]
-        return result
+        self.image = self.images[0]
     }
 
     
