@@ -33,11 +33,12 @@ class DetailViewController: UIViewController {
             if let label = self.productName {
                 let product = detailItem as Product
                 productName.text = product.name
+                productImage.image = UIImage(data: product.image as NSData)                
 //                productSubtitle.text = product.subtitle
 //                productDescription.text = product.description
 //                price.text = NSString(format: "$%.2f", product.normalPrice)
 //                msrp.text = NSString(format: "$%.2f", product.msrp)
-//                productImage.image = UIImage(data: product.image as NSData)
+
             }
         }
     }

@@ -84,16 +84,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TDq-TL-LrC">
+                                <rect key="frame" x="16" y="100" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Nn5-v6-ocy"/>
+                                    <constraint firstAttribute="height" constant="128" id="PMC-HF-fmP"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="TDq-TL-LrC" firstAttribute="top" secondItem="wIa-ze-BJG" secondAttribute="bottom" constant="8" id="5IK-aM-wac"/>
                             <constraint firstItem="wIa-ze-BJG" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="bottom" constant="8" id="6Bv-T2-wws"/>
                             <constraint firstItem="wIa-ze-BJG" firstAttribute="trailing" secondItem="MMQ-IT-qOo" secondAttribute="trailingMargin" id="EK5-xS-s4W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TDq-TL-LrC" secondAttribute="trailing" constant="328" id="GT8-xu-jpl"/>
                             <constraint firstItem="wIa-ze-BJG" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leadingMargin" id="RW0-d4-hzu"/>
+                            <constraint firstItem="TDq-TL-LrC" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leadingMargin" id="Ulc-06-ndS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GT8-xu-jpl"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
+                    <navigationItem key="navigationItem" title="Product" id="cra-N8-TIN"/>
                     <connections>
+                        <outlet property="productImage" destination="TDq-TL-LrC" id="mf9-FM-k34"/>
                         <outlet property="productName" destination="wIa-ze-BJG" id="Szd-GN-vxh"/>
                     </connections>
                 </viewController>
