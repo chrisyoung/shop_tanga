@@ -12,12 +12,27 @@ class Product {
     var name: NSString = ""
     var description: NSString = ""
     var images: NSArray = [NSData]()
-        
+    var image: NSData = NSData()
+    var subtitle: NSString = ""
+    var normalPrice: Double = Double()
+    var vipPrice: Double = Double()
+    var stuPrice: Double = Double()
+    var msrp: Double = Double()
+    
+    
     init(json: NSDictionary){
         self.name = json["name"] as NSString
         self.description = json["description"] as NSString
-        var images = json["images"] as NSArray
-        self.images = getImages(images)
+        self.subtitle = json["subtitle"] as NSString
+        self.images = getImages(json["images"] as NSArray)
+        setPrices(json["prices"] as NSDictionary)
+    }
+    
+    func setPrices(prices: NSDictionary) {
+        self.normalPrice = prices["normal_price"] as Double
+        self.vipPrice = prices["vip_price"] as Double
+        self.stuPrice = prices["stu_price"] as Double
+        self.msrp = prices["msrp"] as Double
     }
     
     func getImages(images: NSArray) -> NSArray{
@@ -28,6 +43,7 @@ class Product {
             var imgURL: NSURL = NSURL(string: image["url"] as NSString)!
             result.append(NSData(contentsOfURL: imgURL)!)
         }
+        self.image = result[0]
         return result
     }
 

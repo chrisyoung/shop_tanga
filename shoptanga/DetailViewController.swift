@@ -10,9 +10,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productSubtitle: UILabel!
+    @IBOutlet weak var msrp: UILabel!
+    @IBOutlet weak var price: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productImage: UIImageView!
+    
+    
     
     
     var detailItem: AnyObject? {
@@ -23,11 +29,15 @@ class DetailViewController: UIViewController {
     }
 
     func configureView() {
-        // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                let description = (detailItem as Product).description
-                webView.loadHTMLString(description, baseURL: nil)
+            if let label = self.productName {
+                let product = detailItem as Product
+                productName.text = product.name
+//                productSubtitle.text = product.subtitle
+//                productDescription.text = product.description
+//                price.text = NSString(format: "$%.2f", product.normalPrice)
+//                msrp.text = NSString(format: "$%.2f", product.msrp)
+//                productImage.image = UIImage(data: product.image as NSData)
             }
         }
     }

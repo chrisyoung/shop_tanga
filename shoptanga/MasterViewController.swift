@@ -58,7 +58,7 @@ class MasterViewController: UITableViewController {
         let product: Product = self.tableData[indexPath.row] as Product
         
         cell.textLabel.text = product.name
-        cell.imageView.image = UIImage(data: product.images[0] as NSData)
+        cell.imageView.image = UIImage(data: product.image as NSData)
         
         
         return cell
