@@ -68,6 +68,7 @@
 				5D42873419FD942400862F5A /* shoptanga */,
 				5D42874C19FD942500862F5A /* shoptangaTests */,
 				5D42873319FD942400862F5A /* Products */,
+				5D42879419FDAA0900862F5A /* vendor */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,14 +84,11 @@
 		5D42873419FD942400862F5A /* shoptanga */ = {
 			isa = PBXGroup;
 			children = (
-				5D42879419FDAA0900862F5A /* vendor */,
+				5DD6A58B19FE0AB2008886D2 /* storyboards */,
 				5D42879319FDA9EB00862F5A /* controllers */,
 				5D42879219FDA9E100862F5A /* models */,
 				5D42873519FD942500862F5A /* Supporting Files */,
 				5D42873719FD942500862F5A /* AppDelegate.swift */,
-				5D42873D19FD942500862F5A /* Main.storyboard */,
-				5D42874019FD942500862F5A /* Images.xcassets */,
-				5D42874219FD942500862F5A /* LaunchScreen.xib */,
 			);
 			path = shoptanga;
 			sourceTree = "<group>";
@@ -98,6 +96,8 @@
 		5D42873519FD942500862F5A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D42874219FD942500862F5A /* LaunchScreen.xib */,
+				5D42874019FD942500862F5A /* Images.xcassets */,
 				5D42873619FD942500862F5A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -143,6 +143,15 @@
 				5D42878B19FDA0F400862F5A /* SwiftyJSON.swift */,
 			);
 			name = vendor;
+			path = shoptanga;
+			sourceTree = "<group>";
+		};
+		5DD6A58B19FE0AB2008886D2 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5D42873D19FD942500862F5A /* Main.storyboard */,
+			);
+			name = storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
