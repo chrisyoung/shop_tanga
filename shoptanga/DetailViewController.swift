@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var productSubtitle: UILabel!
+    @IBOutlet weak var productSubtitle: UITextView!
     @IBOutlet weak var msrp: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
@@ -33,12 +33,12 @@ class DetailViewController: UIViewController {
             if let label = self.productName {
                 let product = detailItem as Product
                 productName.text = product.name
-                productImage.image = UIImage(data: product.image as NSData)                
-//                productSubtitle.text = product.subtitle
-//                productDescription.text = product.description
-//                price.text = NSString(format: "$%.2f", product.normalPrice)
-//                msrp.text = NSString(format: "$%.2f", product.msrp)
+                productSubtitle.text = product.subtitle
+                productImage.image = UIImage(data: product.image as NSData)
 
+                productDescription.text = product.description
+                price.text = NSString(format: "$%.2f", product.normalPrice)
+                msrp.text = NSString(format: "$%.2f", product.msrp)
             }
         }
     }
