@@ -15,10 +15,14 @@ class Product {
     var image: NSData = NSData()
     var subtitle: NSString = ""
     var normalPrice: Double = Double()
-    var vipPrice: Double = Double()
-    var stuPrice: Double = Double()
     var msrp: Double = Double()
-    
+    var styledDescription: NSString {
+        get {
+            var css = "<head><style>body{font-family: arial; padding: 0; margin: 0}</style></head>"
+            var body = "<body>" + self.description + "</body>"
+            return css + body
+        }
+    }
     
     init(json: NSDictionary){
         self.name = json["name"] as NSString
@@ -28,15 +32,15 @@ class Product {
         setPrices(json["prices"] as NSDictionary)
     }
     
+    
     func setPrices(prices: NSDictionary) {
         self.normalPrice = prices["normal_price"] as Double
-        self.vipPrice = prices["vip_price"] as Double
-        self.stuPrice = prices["stu_price"] as Double
         self.msrp = prices["msrp"] as Double
     }
     
     func setImages(images: NSArray) {
-        for var index = 0; index < images.count; ++index {
+//        for var index = 0; index < images.count; ++index {
+        for var index = 0; index < 2; ++index {
             var image = images[index] as NSDictionary
             var imgURL: NSURL = NSURL(string: image["url"] as NSString)!
             self.images.append(NSData(contentsOfURL: imgURL)!)
@@ -48,12 +52,13 @@ class Product {
     class func buildFromJSON(networkData: NSData) -> NSArray {
         var json = JSON(data: networkData).object as NSArray
         var products = [Product]()
-        
-        for var index = 0; index < json.count; ++index {
+
+        for var index = 0; index < 2; ++index {
+//        for var index = 0; index < json.count; ++index {
             var productJSON = json[index] as NSDictionary
             products.append(Product(json: productJSON))
         }
-        
+
         return products
     }
 }

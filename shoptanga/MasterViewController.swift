@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
     @IBOutlet var appsTableView : UITableView?
-    var tableData = []
+    var products = []
 
 
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class MasterViewController: UITableViewController {
             if(error != nil) { println(error.localizedDescription) }
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.tableData = Product.buildFromJSON(data)
+                self.products = Product.buildFromJSON(data)
                 self.appsTableView!.reloadData()
             })
             
@@ -43,31 +43,25 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = tableData[indexPath.row] as Product
+                let object = products[indexPath.row] as Product
                 (segue.destinationViewController as DetailViewController).detailItem = object
             }
         }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return products.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let product: Product = self.tableData[indexPath.row] as Product
+        let product: Product = self.products[indexPath.row] as Product
         
         cell.textLabel.text = product.name
         cell.imageView.image = UIImage(data: product.image as NSData)
         
         
         return cell
-    }
-    
-    func imageFromRow(rowData: NSDictionary) -> NSData{
-        let image = (rowData["images"] as NSArray)[0] as NSDictionary
-        let imgURL: NSURL = NSURL(string: image["url"] as NSString)!
-        return NSData(contentsOfURL: imgURL)!
     }
 }
 
